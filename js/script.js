@@ -1,87 +1,107 @@
-// Objeto interno usado para validar o login.
+
+//Objeto INTERNO
 const usuarioDb = {
-    email: "email@email.com",
-    senha: "12345",
-    nome: "Jose Antonio",
-    avatar: "https://placehold.co/100x100/e6e6e6/444444.png?text=usuario&font=roboto"
-};
-
-// As funcoes abaixo existem porque o index.html chama as duas no onclick do link de login.
-function saudacao() {
-    console.log("Bem-vindo ao Esporte Total!");
+    email:"email@email.com",
+    senha:"12345",
+    nome: "José Antonio",
+    avatar: "https://placehold.co/100x100/e6e6e6/444444.png?text=usu%C3%A1rio&font=roboto"
 }
 
-function saudacao2() {
-    console.log("Abrindo a tela de login...");
-}
 
+//Capturando o botão de entrar
 const botaoEntrar = document.getElementById("btnEntrar");
-const modalDialog = document.querySelector("#meuModal");
-const botaoModal = document.querySelector("#btnFechar");
-const divMsg = document.querySelector("#msg");
 
-let intervalo;
+//Atrelando ao botão uma função que vai receber dois parâmetros.
+// O primeiro será o evento de tela, o segundo será a função de callBack ou função anônima.
 
-function fecharModal() {
-    if (modalDialog) {
-        modalDialog.close();
+botaoEntrar.addEventListener("click", function(e){
+    
+    e.preventDefault();
+
+    //Para casa:
+    //Capturar os campos de email e senha.
+    //Armazenar em variáveis.
+    //Imprimir seus valores.
+    const email = document.querySelector("#idEmail");
+    const senha = document.querySelector("#idSenha");
+
+    
+    //Armazenar os dados que chegam do form em um objeto:
+    const userForm = {
+        email: email.value,
+        senha: senha.value
     }
-}
 
-function iniciarContagemRegressiva(mensagem, paginaDestino) {
-    let contador = 5;
+    //Capturar o dialog
+    const modalDialog = document.querySelector("#meuModal");
+    
 
-    clearInterval(intervalo);
 
-    divMsg.innerHTML = `<p>${mensagem}<br>Você será redirecionado em ${contador} segundos...</p>`;
-
-    intervalo = setInterval(function() {
-        contador--;
-
-        divMsg.innerHTML = `<p>${mensagem}<br>Você será redirecionado em ${contador} segundos...</p>`;
-
-        if (contador === 0) {
-            clearInterval(intervalo);
-            window.location.href = paginaDestino;
-        }
-    }, 1000);
-}
-
-modalDialog.classList.remove("modal-sucesso", "modal-erro");
-
-if (botaoModal) {
-    botaoModal.addEventListener("click", fecharModal);
-}
-
-if (botaoEntrar && modalDialog && divMsg) {
-    botaoEntrar.addEventListener("click", function(e) {
-        e.preventDefault();
-
-        const email = document.querySelector("#idEmail");
-        const senha = document.querySelector("#idSenha");
-
-        const userForm = {
-            email: email.value,
-            senha: senha.value
-        };
-
-        try {
-            if (!usuarioDb) {
-                throw Error("Ocorreu um erro no acesso as informacoes do usuario.");
-            }
-
-            modalDialog.showModal();
-
-            if (usuarioDb.email === userForm.email && usuarioDb.senha === userForm.senha) {
-                iniciarContagemRegressiva("Login realizado com sucesso!", "./index.html");
-                modalDialog.classList.add("modal-sucesso");
-            } else {
-                iniciarContagemRegressiva("Dados incorretos. Tente novamente.", "./login.html");
-                modalDialog.classList.add("modal-erro");
-            }
-        } catch (error) {
-            console.error(error);
-            divMsg.innerHTML = `<p>${error.message}</p>`;
-        }
+    //Adicionar a mensagem de sucesso para o usuário no modal!
+    //Vamos usar o innerHTML para injetar 2 <p> com o texto na div=msg.
+    //Mas para isso necessitamos capturar a div=msg antes
+    const divMsg = document.querySelector("#msg");
+    
+    //Capturar o botão do modal para atrelar nele o evento de click e assim colocar  neste botão a ação de fechar o modal.
+    const botaoModal = document.querySelector("#btnFechar");
+    botaoModal.addEventListener("click", function(){
+        modalDialog.classList.remove();
+        modalDialog.close();
     });
-}
+
+    //Validação
+    try {
+
+        if (usuarioDb) {
+
+            if( (usuarioDb.email === userForm.email) && (usuarioDb.senha === userForm.senha)){
+
+                //Abrindo o dialog e deixando o fundo livre.
+                // modalDialog.show();
+
+                //Abrindo o dialog e travando o fundo.
+                modalDialog.showModal();                
+                let contador = 5;
+
+                //Injetando os 2 <p> com a mensagem de sucesso.
+                divMsg.innerHTML = `<p>Login realizado com Sucesso!</p><p>Você será redirecionado em ${contador} segundos...</p>`;
+
+                //Temporizador de redirecionamento com setInterval.
+                const intervalo = setInterval( function(){
+                    
+                    contador--;
+                    divMsg.innerHTML = `<p>Login realizado com Sucesso!</p><p>Você será redirecionado em ${contador} segundos...</p>`;
+                    
+                    if(contador === 0){
+                        clearInterval(intervalo);
+                        //Redirecionamento do usuário para uma nova página!!
+                        window.location.href = "../index.html";
+                    }
+
+                }, 1000 );
+
+            }else{
+                throw Error("Email ou Senha incorretos.");
+                
+            }
+            
+        }else{
+            throw Error("Ocorreu um erro no acesso as informações do usuário.");
+        }
+
+    } catch (error) {
+        console.error(error);
+
+            //Abrindo o dialog e travando o fundo.
+            modalDialog.showModal();
+            modalDialog.classList.add("danger");
+
+          //Injetando os 1 <p> com a mensagem de sucesso.
+                divMsg.innerHTML = `<p>${error}</p>`;
+    }
+
+});
+
+
+//Pra casa
+//Reutilzar o MODAL para as mensagens de erro!!!

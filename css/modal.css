@@ -5,27 +5,23 @@
     margin: 5% auto;
     text-align: center;
     position: relative;
+    background-color: #d7f7df;
+    color: #0a6b17;
+    border: 2px solid #0a6b17;
 }
 
-.modal-sucesso {
-  background-color: #d7f7df;
-  color: #0a6b17;
-  border: 2px solid #0a6b17;
-}
-
-.modal-erro {
-  background-color: #ffe0e0;
-  color: #8a0000;
-  border: 2px solid #8a0000;
+.danger{
+    background-color: #ffe0e0 !important;
+    color: #8a0000 !important;
+    border: 2px solid #8a0000 !important;
 }
 
 #btnFechar{
-    background-color: #0000007c;
+    background-color: #9696967c;
     color: #05290a;
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    border: 2px solid #b8bbb8;
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
