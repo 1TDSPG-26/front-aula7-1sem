@@ -9,6 +9,11 @@
     position: relative;
 }
 
+.modal-danger{
+    background-color: #af4242 !important;
+    color: #6b0a0a !important;
+}
+
 #meuModal::backdrop{
     background: rgba(53, 73, 151, 0.454);
 }
@@ -32,6 +37,15 @@
     font-weight: 700;
 }
 
+.modal-danger #btnFechar{
+    background-color: #af4242 !important;
+    color: #6b0a0a !important;
+    border: 4px solid #6b0a0a;
+}
+.modal-danger #btnFechar::before{
+    color: #6b0a0a !important;
+}
+
 #msg{
     margin-top: 15%;
 }
@@ -39,4 +53,10 @@
 #msg p{
     font-size: 4rem;
     font-weight: 500;
+}
+
+#meuModal .danger #btnFechar{
+    background-color: #af4242;
+    color: #6b0a0a;
+    border: 4px solid #6b0a0a;
 }
