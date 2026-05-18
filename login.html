@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="./css/main.css" />
-    
+
     <script src="./js/script.js" defer></script>
 
     <title>ESPORTE TOTAL - LOGIN</title>
@@ -24,11 +24,17 @@
         </ul>
       </nav>
     </header>
-
     <main class="conteudo">
       <section class="hero">
         <div class="hero__container">
           <h1 class="hero__title">CONTROLE DE ACESSO</h1>
+
+          <dialog id="meuModal">
+            <button aria-label="Fechar janela" id="btnFechar"></button>
+            <div id="msg">
+              TESTE
+            </div>
+          </dialog>
 
           <form action="#" method="GET">
             <fieldset>
@@ -44,7 +50,7 @@
                   maxlength="150"
                   required
                 /> 
-              </div>
+              </div> 
               <div>
                 <label for="idSenha">Senha</label>
                 <input
@@ -59,7 +65,6 @@
               </div>
               <div>
                 <button type="submit" id="btnEntrar">Entrar</button>
-                
               </div>
             </fieldset>
           </form>
@@ -78,6 +83,5 @@
     <footer class="footer">
       <p>&copy; Todos os direitos reservados - ESPORTE TOTAL - 2026</p>
     </footer>
-    
   </body>
 </html>
