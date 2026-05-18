@@ -45,10 +45,38 @@ botaoEntrar.addEventListener("click", function(e){
 
                 //Abrindo o dialog e travando o fundo.
                 modalDialog.showModal();
-                
 
-                //Redirecionamento do usuário para uma nova página!!
-                //window.location.href = "../index.html";
+                
+                //Capturar o botão do modal para atrelar nele o evento de click e assim colocar  neste botão a ação de fechar o modal.
+                const botaoModal = document.querySelector("#btnFechar");
+                botaoModal.addEventListener("click", function(){
+                    modalDialog.close();
+                });
+                
+                //Adicionar a mensagem de sucesso para o usuário no modal!
+                //Vamos usar o innerHTML para injetar 2 <p> com o texto na div=msg.
+                //Mas para isso necessitamos capturar a div=msg antes
+                const divMsg = document.querySelector("#msg");
+                
+                let contador = 5;
+
+                //Injetando os 2 <p> com a mensagem de sucesso.
+                divMsg.innerHTML = `<p>Login realizado com Sucesso!</p><p>Você será redirecionado em ${contador} segundos...</p>`;
+
+                //Temporizador de redirecionamento com setInterval.
+                const intervalo = setInterval( function(){
+                    
+                    contador--;
+                    divMsg.innerHTML = `<p>Login realizado com Sucesso!</p><p>Você será redirecionado em ${contador} segundos...</p>`;
+                    
+                    if(contador === 0){
+                        clearInterval(intervalo);
+                        //Redirecionamento do usuário para uma nova página!!
+                        window.location.href = "../index.html";
+                    }
+
+                }, 1000 );
+
             }else{
                 throw Error("Email ou Senha incorretos.");
             }
@@ -63,3 +91,7 @@ botaoEntrar.addEventListener("click", function(e){
     }
 
 });
+
+
+//Pra casa
+//Reutilzar o MODAL para as mensagens de erro!!!
