@@ -40,3 +40,16 @@
     font-size: 4rem;
     font-weight: 500;
 }
+
+.danger{
+    background-color: #ff0000 !important;
+    color: #000000 !important;
+    border: 4px solid #000000 !important;
+
+}
+
+.danger #btnFechar::before{
+    content: "X";
+    color: #000000 !important;
+    font-weight: 700;
+}
