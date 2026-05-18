@@ -3,19 +3,29 @@
     width: 80%;
     height: 70%;
     margin: 5% auto;
-    background-color: #42af51;
-    color: #0a6b17;
     text-align: center;
     position: relative;
 }
 
+.modal-sucesso {
+  background-color: #d7f7df;
+  color: #0a6b17;
+  border: 2px solid #0a6b17;
+}
+
+.modal-erro {
+  background-color: #ffe0e0;
+  color: #8a0000;
+  border: 2px solid #8a0000;
+}
+
 #btnFechar{
-    background-color: #42af51;
-    color: #0a6b17;
+    background-color: #0000007c;
+    color: #05290a;
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    border: 2px solid #0a6b17;
+    border: 2px solid #b8bbb8;
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
@@ -24,7 +34,7 @@
 
 #btnFechar::before{
     content: "X";
-    color: #42af51;
+    color: #071008;
     font-weight: 700;
 }
 
@@ -36,3 +46,4 @@
     font-size: 4rem;
     font-weight: 500;
 }
+
