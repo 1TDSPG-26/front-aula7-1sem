@@ -1,4 +1,5 @@
 
+
 //Objeto INTERNO
 const usuarioDb = {
     email:"email@email.com",
@@ -31,32 +32,32 @@ botaoEntrar.addEventListener("click", function(e){
         senha: senha.value
     }
 
+    //Capturar o dialog
+    const modalDialog = document.querySelector("#meuModal");
+
+    //Adicionar a mensagem de sucesso para o usuário no modal!
+    //Vamos usar o innerHTML para injetar 2 <p> com o texto na div=msg.
+    //Mas para isso necessitamos capturar a div=msg antes
+    const divMsg = document.querySelector("#msg");
+    
+    //Capturar o botão do modal para atrelar nele o evento de click e assim colocar  neste botão a ação de fechar o modal.
+    const botaoModal = document.querySelector("#btnFechar");
+    botaoModal.addEventListener("click", function(){
+        modalDialog.close();
+    });
+
     //Validação
     try {
 
         if (usuarioDb) {
 
             if( (usuarioDb.email === userForm.email) && (usuarioDb.senha === userForm.senha)){
-                //Capturar o dialog
-                const modalDialog = document.querySelector("#meuModal");
 
                 //Abrindo o dialog e deixando o fundo livre.
                 // modalDialog.show();
 
                 //Abrindo o dialog e travando o fundo.
                 modalDialog.showModal();
-
-                
-                //Capturar o botão do modal para atrelar nele o evento de click e assim colocar  neste botão a ação de fechar o modal.
-                const botaoModal = document.querySelector("#btnFechar");
-                botaoModal.addEventListener("click", function(){
-                    modalDialog.close();
-                });
-                
-                //Adicionar a mensagem de sucesso para o usuário no modal!
-                //Vamos usar o innerHTML para injetar 2 <p> com o texto na div=msg.
-                //Mas para isso necessitamos capturar a div=msg antes
-                const divMsg = document.querySelector("#msg");
                 
                 let contador = 5;
 
@@ -87,9 +88,17 @@ botaoEntrar.addEventListener("click", function(e){
 
     } catch (error) {
         console.error(error);
-        alert(error);
-    }
 
+            //Abrindo o dialog e travando o fundo.
+            modalDialog.showModal();
+
+            //Adiconando a classe css de erro aos elementos do modal
+            modalDialog.classList.add("danger");
+            botaoModal.classList.add("danger");
+
+            //Injetando os 1 <p> com a mensagem de sucesso.
+            divMsg.innerHTML = `<p>${error}</p>`;
+    }
 });
 
 
