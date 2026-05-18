@@ -39,3 +39,15 @@
     font-size: 4rem;
     font-weight: 500;
 }
+
+.danger{
+    background-color: #c86164 !important; 
+    color: #d90a11 !important;
+    border: 4px solid #d90a11 !important; 
+}
+
+.danger #btnFechar::after{
+    content: "X";
+    color: #d90a11 !important;
+    font-weight: 700;
+}
